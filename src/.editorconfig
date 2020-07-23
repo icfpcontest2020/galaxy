@@ -1,0 +1,34 @@
+root=true
+# http://editorconfig.org
+
+[*]
+indent_style=space
+indent_size=4
+end_of_line=crlf
+charset=utf-8-bom
+trim_trailing_whitespace=true
+insert_final_newline=true
+
+# ReSharper properties
+resharper_csharp_align_multiline_argument=false
+resharper_indent_anonymous_method_block=true
+resharper_keep_existing_embedded_arrangement=false
+resharper_place_simple_embedded_statement_on_same_line=False
+
+[*.{csproj,props,targets}]
+indent_size=2
+
+[*.{cs,cshtml}]
+insert_final_newline=false
+
+[*.{js,jsx,json,cmd}]
+charset=utf-8
+
+[*.{xml,md,txt}]
+indent_style=ignore
+trim_trailing_whitespace=false
+insert_final_newline=false
+charset=ignore
+
+[.git/**/*]
+charset=utf-8
