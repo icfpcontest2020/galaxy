@@ -1,0 +1,1 @@
+dotnet run --project src/CosmicMachine render --with-wav src/CosmicMachine/message.txt message

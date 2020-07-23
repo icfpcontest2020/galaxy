@@ -2,9 +2,6 @@
 
 ## TODO
 
-* Add CosmicMachine
-* Add messages generator
-* Add WAV generator
 * Add WebPad - cleanup it's code
 * Add alien_encode/alien_decode tools
 * Publish to the Internet
@@ -14,10 +11,19 @@
 * Add descriptions for swagger methods (take from read-the-docs)
 * Update read-the-docs
 
+## How to change message images
 
+1. Change sourse in src/CosmicMachine/message.txt
+2. Run `render-messages.sh` (dotnet core should be installed)
+3. See result in /message directory
+ 
+## How to change galaxy.txt
 
+1. Edit source in src/CosmicMachine/CSharpGalaxy
+2. Run `compile-galaxy.sh` (dotnet core should be installed)
+3. See result in /galaxy directory
 
-## How to build and run locally
+## How to build and run alien server locally
 
 1. Clone, build with docker and run on port `12345`:
 
