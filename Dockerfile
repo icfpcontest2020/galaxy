@@ -3,13 +3,13 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1.301 AS build
 WORKDIR /source
 
 # copy and build app and libraries
-COPY Core/ Core/
-COPY PlanetWars/ PlanetWars/
-COPY PlanetWars.Contracts/ PlanetWars.Contracts/
-COPY PlanetWars.GameMechanics/ PlanetWars.GameMechanics/
-COPY PlanetWars.Server/ PlanetWars.Server/
-COPY *.props .
-COPY *.targets .
+COPY src/Core/ Core/
+COPY src/PlanetWars/ PlanetWars/
+COPY src/PlanetWars.Contracts/ PlanetWars.Contracts/
+COPY src/PlanetWars.GameMechanics/ PlanetWars.GameMechanics/
+COPY src/PlanetWars.Server/ PlanetWars.Server/
+COPY src/*.props .
+COPY src/*.targets .
 WORKDIR /source/PlanetWars.Server
 RUN dotnet build -c Release
 
