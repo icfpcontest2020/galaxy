@@ -13,7 +13,7 @@
 
 ## How to change message images
 
-1. Change sourse in src/CosmicMachine/message.txt
+1. Change source in src/CosmicMachine/message.txt
 2. Run `render-messages.sh` (dotnet core should be installed)
 3. See result in /message directory
  

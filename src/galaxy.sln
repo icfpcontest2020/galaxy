@@ -7,21 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
-		global.json = global.json
 		..\Dockerfile = ..\Dockerfile
-		..\README.md = ..\README.md
+		global.json = global.json
 		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetWars.Contracts", "PlanetWars.Contracts\PlanetWars.Contracts.csproj", "{E9CFF043-D273-4BBA-983F-0466D735A861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars.Contracts", "PlanetWars.Contracts\PlanetWars.Contracts.csproj", "{E9CFF043-D273-4BBA-983F-0466D735A861}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{45F531D1-201A-4CEC-96C7-D07F38F38DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{45F531D1-201A-4CEC-96C7-D07F38F38DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetWars.GameMechanics", "PlanetWars.GameMechanics\PlanetWars.GameMechanics.csproj", "{95D0EA89-AEA8-4C6E-813D-BF40C465616D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars.GameMechanics", "PlanetWars.GameMechanics\PlanetWars.GameMechanics.csproj", "{95D0EA89-AEA8-4C6E-813D-BF40C465616D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetWars", "PlanetWars\PlanetWars.csproj", "{6420C5D7-3842-4226-9CF3-76FA447B1686}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars", "PlanetWars\PlanetWars.csproj", "{6420C5D7-3842-4226-9CF3-76FA447B1686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetWars.Server", "PlanetWars.Server\PlanetWars.Server.csproj", "{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars.Server", "PlanetWars.Server\PlanetWars.Server.csproj", "{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmicMachine", "CosmicMachine\CosmicMachine.csproj", "{2EECC6B9-4061-4961-A470-8E9C6586A324}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,11 +95,21 @@ Global
 		{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}.Release|iPhone.Build.0 = Release|Any CPU
 		{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhone.Build.0 = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4F11F81-5B04-46FD-AE53-F48BB2A317FA}
