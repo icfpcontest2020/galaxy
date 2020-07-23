@@ -17,8 +17,7 @@ namespace PlanetWars.Server.Controllers
             this.planetWarsServer = planetWarsServer;
         }
 
-        [HttpGet]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("stats")]
         public ActionResult<PlanetWarsServerStats> GetStats()
         {
             var allGames = planetWarsServer.GetAllGames();

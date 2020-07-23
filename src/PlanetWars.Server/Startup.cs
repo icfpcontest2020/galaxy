@@ -77,6 +77,7 @@ namespace PlanetWars.Server
             app.UseSwaggerUI(
                 c =>
                 {
+                    c.RoutePrefix = "";
                     c.SwaggerEndpoint("/swagger/api/swagger.json", "ICFP Contest 2020 PlanetWarsServer API");
                     c.DocumentTitle = "Swagger - PlanetWarsServer - ICFP Contest 2020";
                 });
