@@ -20,4 +20,4 @@ RUN dotnet publish -c Release --no-build -o /app
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.5
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "PlanetWars.Server.dll", "--mode=Local"]
+ENTRYPOINT ["dotnet", "PlanetWars.Server.dll"]

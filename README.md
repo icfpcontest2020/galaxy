@@ -30,12 +30,12 @@
    ```bash
    git clone git@github.com:icfpcontest2020/galaxy.git
    cd galaxy
-   docker build -t planetwars .
-   docker run --rm -p 12345:12345 planetwars
+   docker build -t galaxy .
+   docker run --rm -p 12345:12345 galaxy
    ```
 
 2. Open this url in browser: `http://localhost:12345` - you
-   will see swagger docs page for PlanetWarsServer API
+   will see swagger docs page for Galaxy API
    
 3. Try to send simple `Countdown` request (`[0]`, which is encoded as `1101000`):
    ```bash

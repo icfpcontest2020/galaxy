@@ -22,11 +22,19 @@ namespace PlanetWars.Server
 
         public Startup(IConfiguration configuration)
         {
-            var modeString = configuration["mode"];
-            if (!Enum.TryParse<PlanetWarsServerMode>(modeString, ignoreCase: true, out var mode))
-                throw new InvalidOperationException($"Invalid mode: {modeString}");
-
+            var mode = GetPlanetWarsServerMode(configuration);
             planetWarsServerSettings = PlanetWarsServerSettings.ForMode(mode);
+        }
+
+        private static PlanetWarsServerMode GetPlanetWarsServerMode(IConfiguration configuration)
+        {
+            var modeString = configuration["mode"];
+            PlanetWarsServerMode mode;
+            if (string.IsNullOrEmpty(modeString))
+                mode = PlanetWarsServerMode.Local;
+            else if (!Enum.TryParse(modeString, ignoreCase: true, out mode))
+                throw new InvalidOperationException($"Invalid mode: {modeString}");
+            return mode;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -63,7 +71,7 @@ namespace PlanetWars.Server
 
                     c.SwaggerDoc("api", new OpenApiInfo
                     {
-                        Title = "ICFP Contest 2020 PlanetWarsServer API",
+                        Title = "ICFP Contest 2020 Galaxy API",
                         Version = "v1"
                     });
                     c.OperationFilter<RawTextRequestOperationFilter>();
@@ -78,8 +86,8 @@ namespace PlanetWars.Server
                 c =>
                 {
                     c.RoutePrefix = "";
-                    c.SwaggerEndpoint("/swagger/api/swagger.json", "ICFP Contest 2020 PlanetWarsServer API");
-                    c.DocumentTitle = "Swagger - PlanetWarsServer - ICFP Contest 2020";
+                    c.SwaggerEndpoint("/swagger/api/swagger.json", "ICFP Contest 2020 Galaxy API");
+                    c.DocumentTitle = "Swagger - Galaxy API - ICFP Contest 2020";
                 });
 
             app.UseRouting();
