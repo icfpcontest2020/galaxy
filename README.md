@@ -51,7 +51,7 @@
    
 ## How to encode/decode Alien strings
 
-Use provided bash-scripts `alien_encode.sh` and `alien_decode`.
+Use provided bash-scripts `alien_encode.sh` and `alien_decode.sh` (dotnet core should be installed).
 
 You can encode/decode strings from STDIN or from command line arguments:
 ```bash
