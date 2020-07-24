@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
+		..\compile-galaxy.sh = ..\compile-galaxy.sh
+		..\render-messages.sh = ..\render-messages.sh
+		..\alien_decode.sh = ..\alien_decode.sh
+		..\alien_encode.sh = ..\alien_encode.sh
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars.Contracts", "PlanetWars.Contracts\PlanetWars.Contracts.csproj", "{E9CFF043-D273-4BBA-983F-0466D735A861}"
@@ -24,6 +28,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanetWars.Server", "PlanetWars.Server\PlanetWars.Server.csproj", "{18FA9316-BBCC-4E65-8EE6-93BF2C0230A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmicMachine", "CosmicMachine\CosmicMachine.csproj", "{2EECC6B9-4061-4961-A470-8E9C6586A324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +113,18 @@ Global
 		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhone.Build.0 = Release|Any CPU
 		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{2EECC6B9-4061-4961-A470-8E9C6586A324}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|iPhone.Build.0 = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7E9CFA15-B0E3-43CB-820E-21FDE7891FC5}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
