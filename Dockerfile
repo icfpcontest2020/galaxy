@@ -4,6 +4,7 @@ WORKDIR /source
 
 # copy and build app and libraries
 COPY src/Core/ Core/
+COPY src/CosmicMachine/ CosmicMachine/
 COPY src/PlanetWars/ PlanetWars/
 COPY src/PlanetWars.Contracts/ PlanetWars.Contracts/
 COPY src/PlanetWars.GameMechanics/ PlanetWars.GameMechanics/
