@@ -2,7 +2,7 @@
 
 ## TODO
 
-* Add WebPad - cleanup it's code
+* Cleanup GalaxyPad code
 * Publish to the Internet
 * Publish to the dockerhub
 * Write this readme
@@ -33,7 +33,7 @@
    $ docker run --rm -p 12345:12345 galaxy
    ```
 
-2. Open this url in browser: `http://localhost:12345` - you
+2. Open this url in browser: `http://localhost:12345/swagger` - you
    will see swagger docs page for Galaxy API
    
 3. Try to send simple `Countdown` request (`[0]`, which is encoded as `1101000`):

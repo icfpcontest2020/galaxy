@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CosmicMachine\CosmicMachine.csproj" />
     <ProjectReference Include="..\PlanetWars\PlanetWars.csproj" />
   </ItemGroup>
 

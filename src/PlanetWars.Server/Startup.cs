@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using NetCore.AutoRegisterDi;
 
 using PlanetWars.Contracts;
+using PlanetWars.Server.GalaxyPad;
 using PlanetWars.Server.HandlersMechanics;
 using PlanetWars.Server.Helpers;
 using PlanetWars.Server.Polling;
@@ -45,6 +46,8 @@ namespace PlanetWars.Server
             services.AddSingleton<IGameRulesProvider, GameRulesProvider>();
             services.AddSingleton<PlanetWarsServer>();
             services.AddSingleton<ApiResponsePoller>();
+            services.AddSingleton<GalaxyPadProcessService>();
+            services.AddSingleton<GalaxyPadAlienServerClient>();
             services.RegisterAssemblyPublicNonGenericClasses(typeof(IAlienRequestHandler).Assembly)
                     .Where(c => typeof(IAlienRequestHandler).IsAssignableFrom(c))
                     .AsPublicImplementedInterfaces(ServiceLifetime.Singleton);
@@ -55,7 +58,7 @@ namespace PlanetWars.Server
 
             services.AddCors();
             services.AddRouting();
-            services.AddControllers()
+            services.AddControllersWithViews()
                     .AddNewtonsoftJson(jsonOptions =>
                                        {
                                            jsonOptions.SerializerSettings.Formatting = HttpJson.Settings.Formatting;
@@ -85,7 +88,6 @@ namespace PlanetWars.Server
             app.UseSwaggerUI(
                 c =>
                 {
-                    c.RoutePrefix = "";
                     c.SwaggerEndpoint("/swagger/api/swagger.json", "ICFP Contest 2020 Galaxy API");
                     c.DocumentTitle = "Swagger - Galaxy API - ICFP Contest 2020";
                 });
