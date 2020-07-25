@@ -22,6 +22,7 @@ namespace PlanetWars.Server.GalaxyPad
                 (nameof(MatchingPuzzleModule), nameof(MatchingPuzzleModule.EntryPoint)),
                 (nameof(TicTacToeModule), nameof(TicTacToeModule.EntryPoint)),
                 (nameof(SamplesModule), nameof(SamplesModule.DrawClickedPixel)),
+                (nameof(SamplesModule), nameof(SamplesModule.Paint)),
             };
             var fullSkiProgram = ResourceReader.CompileFromResources();
             foreach (var entryPoint in entryPoints)
@@ -29,18 +30,6 @@ namespace PlanetWars.Server.GalaxyPad
                 var name = entryPoint.Item1 + "." + entryPoint.Item2;
                 Exp program = fullSkiProgram.ToExp(name);
                 startPrograms.Add(name, program);
-            }
-            var executingAssembly = Assembly.GetExecutingAssembly();
-            foreach (var resourceName in executingAssembly.GetManifestResourceNames())
-            {
-                if (resourceName.EndsWith(".ski.txt"))
-                {
-                    using var reader = new StreamReader(executingAssembly.GetManifestResourceStream(resourceName) ?? throw new Exception(resourceName));
-                    var program = reader.ReadToEnd();
-                    var name = resourceName.Split(".").Reverse().Skip(2).First();
-                    var skiProgram = SkiProgram.Load(program);
-                    startPrograms.Add(name, skiProgram.ToExp("operationSystem"));
-                }
             }
         }
 

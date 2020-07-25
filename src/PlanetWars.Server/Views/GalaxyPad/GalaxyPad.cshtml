@@ -7,17 +7,19 @@
             background-color: black;
             color: white;
         }
+
         a {
             color: lightseagreen;
         }
-        a:visited{
-            color: violet;
-        }
+
+            a:visited {
+                color: violet;
+            }
+
         #screen {
             position: relative;
             z-index: 1;
             border: 1px solid cyan;
-
         }
     </style>
     <title>GalaxyPad - ICFP Contest 2020</title>
@@ -31,54 +33,50 @@
     <canvas id="screen" width="1200" height="800">
     </canvas>
     <p>
-        Eval cost: <code id="evalCost"></code>
-    </p>
-    <p>
-
-<textarea id="memory" cols="120" rows="10"></textarea><br />
+        <textarea id="memory" cols="120" rows="10"></textarea><br />
         <button id="changeMemory">Change Memory</button>
     </p>
-<h3>Cheat codes</h3>
-<ul>
-    <li><button onclick="changeState('[2 [1 -1 _] 0 _ _]')">Galaxy with races</button></li>
-    <li><button onclick="changeState('[5 [2 0 _ _ _ _ _ 222790 _] 9 _ _]')">Battles</button></li>
-    <li><button onclick="changeState('[5 [2 0 _ _ _ _ _ 222790 _] 9 [103652820 192496425430 _] _]')">Battles with bonuses</button></li>
-</ul>
+    <h3>Cheat codes</h3>
+    <ul>
+        <li><button onclick="changeState('[2 [1 -1 _] 0 _ _]')">Galaxy with races</button></li>
+        <li><button onclick="changeState('[5 [2 0 _ _ _ _ _ 222790 _] 9 _ _]')">Battles</button></li>
+        <li><button onclick="changeState('[5 [2 0 _ _ _ _ _ 222790 _] 9 [103652820 192496425430 _] _]')">Battles with bonuses</button></li>
+    </ul>
     <p>
         Time taken to compute: <code id="time"></code> ms
     </p>
-<script>
-    let waiting = false;
-    let zoom = 4;
-    let minX = 0;
-    let minY = 0;
-    let contrastFactor = 50;
-    let selectedLayer = -1;
-    const canvas = document.getElementById('screen');
-    const zoomControl = document.getElementById('zoom');
-    const minSizeControl = document.getElementById('minSize');
-    const changeMemory = document.getElementById('changeMemory');
-    zoomControl.addEventListener('change', zoomChange);
-    minSizeControl.addEventListener('change', zoomChange);
-    canvas.addEventListener("click", click);
-    changeMemory.addEventListener("click", memoryChange);
+    <script>
+        let waiting = false;
+        let zoom = 4;
+        let minX = 0;
+        let minY = 0;
+        let contrastFactor = 50;
+        let selectedLayer = -1;
+        const canvas = document.getElementById('screen');
+        const zoomControl = document.getElementById('zoom');
+        const minSizeControl = document.getElementById('minSize');
+        const changeMemory = document.getElementById('changeMemory');
+        zoomControl.addEventListener('change', zoomChange);
+        minSizeControl.addEventListener('change', zoomChange);
+        canvas.addEventListener("click", click);
+        changeMemory.addEventListener("click", memoryChange);
 
-    const ctx = canvas.getContext('2d');
-    let process = {};
+        const ctx = canvas.getContext('2d');
+        let process = {};
 
-    function changeState(state) {
-        document.getElementById("memory").value = state;
-        memoryChange();
-    }
+        function changeState(state) {
+            document.getElementById("memory").value = state;
+            memoryChange();
+        }
 
-    function zoomChange(ev) {
-        update(process);
-    }
+        function zoomChange(ev) {
+            update(process);
+        }
 
-    function memoryChange(ev) {
-        var memoryData = document.getElementById("memory").value;
-        console.log(memoryData);
-        fetch("/galaxy-pad/process/" + process.pid + "/change",
+        function memoryChange(ev) {
+            var memoryData = document.getElementById("memory").value;
+            console.log(memoryData);
+            fetch("/galaxy-pad/process/" + process.pid + "/change",
                 {
                     method: 'POST',
                     headers: {
@@ -86,55 +84,55 @@
                     },
                     body: JSON.stringify(memoryData)
                 })
-            .then(r => r.json())
-            .then(data => {
-                update(data);
-                sendClick(100500, 100500);
-            });
-    }
-
-    async function fetchPrograms() {
-        const r = await fetch("/galaxy-pad/start/");
-        if (r.ok) {
-            const data = await r.json();
-            await updatePrograms(data);
-        } else {
-            document.write("<pre>" + (await r.text()) + "</pre>");
+                .then(r => r.json())
+                .then(data => {
+                    update(data);
+                    sendClick(100500, 100500);
+                });
         }
-    }
 
-    fetchPrograms();
-
-
-    async function updatePrograms(programs) {
-        const programsDiv = document.getElementById("programs");
-        const content = programs.map(p => `<a href='?program=${p}'>${p}</a><br>`).join('');
-        programsDiv.innerHTML = content;
-        var urlParams = new URLSearchParams(location.search);
-        const r = await fetch("/galaxy-pad/start/" + (urlParams.get('program') || programs[0]))
-        if (r.ok) {
-            const data = await r.json();
-            update(data);
-            if (process.lastCommand === 1) {
-                setTimeout(sendClick, 20, 0, 0);
+        async function fetchPrograms() {
+            const r = await fetch("/galaxy-pad/start/");
+            if (r.ok) {
+                const data = await r.json();
+                await updatePrograms(data);
+            } else {
+                document.write("<pre>" + (await r.text()) + "</pre>");
             }
-
-        } else {
-            document.write("<pre>" + (await r.text()) + "</pre>");
         }
-    }
 
-    function click(event) {
-        let x = Math.floor(event.offsetX / zoom) + minX;
-        let y = Math.floor(event.offsetY / zoom) + minY;
-        sendClick(x, y);
-    }
+        fetchPrograms();
 
-    function sendClick(x, y) {
-        if (waiting) return;
-        waiting = true;
-        update(process);
-        fetch(`/galaxy-pad/process/${process.pid}/click`,
+
+        async function updatePrograms(programs) {
+            const programsDiv = document.getElementById("programs");
+            const content = programs.map(p => `<a href='?program=${p}'>${p}</a><br>`).join('');
+            programsDiv.innerHTML = content;
+            var urlParams = new URLSearchParams(location.search);
+            const r = await fetch("/galaxy-pad/start/" + (urlParams.get('program') || programs[0]))
+            if (r.ok) {
+                const data = await r.json();
+                update(data);
+                if (process.lastCommand === 1) {
+                    setTimeout(sendClick, 20, 0, 0);
+                }
+
+            } else {
+                document.write("<pre>" + (await r.text()) + "</pre>");
+            }
+        }
+
+        function click(event) {
+            let x = Math.floor(event.offsetX / zoom) + minX;
+            let y = Math.floor(event.offsetY / zoom) + minY;
+            sendClick(x, y);
+        }
+
+        function sendClick(x, y) {
+            if (waiting) return;
+            waiting = true;
+            update(process);
+            fetch(`/galaxy-pad/process/${process.pid}/click`,
                 {
                     method: 'POST',
                     headers: {
@@ -142,55 +140,54 @@
                     },
                     body: JSON.stringify([x, y])
                 })
-            .then(r => r.json())
-            .then(data => {
-                waiting = false;
-                update(data);
-                console.log(waiting);
-            })
-            .catch(d => {
-                waiting = false;
-            });
-    }
-
-    function update(data) {
-        zoom = +zoomControl.value;
-        let minSize = +minSizeControl.value;
-        console.log(zoom);
-        process = data;
-        document.getElementById("evalCost").innerText = data.evalCost + " (" + Math.round((+data.evalCost / +data.timeTakenMs)) + " applications / ms)";
-        document.getElementById("memory").value = data.memory;
-        document.getElementById("time").innerText = data.timeTakenMs;
-        //document.getElementById("pid").innerText = data.pid;
-        const pixels = data.screens.flat();
-        minX = Math.min(-Math.floor(minSize / 2), Math.min(...pixels.map(p => p[0])));
-        minY = Math.min(-Math.floor(minSize / 2), Math.min(...pixels.map(p => p[1])));
-        const maxX = Math.max(Math.floor(minSize / 2), Math.max(...pixels.map(p => p[0])));
-        const maxY = Math.max(Math.floor(minSize / 2), Math.max(...pixels.map(p => p[1])));
-        const margin = 0;
-        canvas.width = (maxX - minX + 1) * zoom + 2 * margin;
-        canvas.height = (maxY - minY + 1) * zoom + 2 * margin;
-        ctx.fillStyle = 'black';
-        const intensity = [255, 128, 64, 32, 16, 8, 4, 2, 1, 0];
-        for (var i = 1; i < intensity.length; i++) {
-            intensity[i] = intensity[i - 1] * contrastFactor / 100;
-
+                .then(r => r.json())
+                .then(data => {
+                    waiting = false;
+                    update(data);
+                    console.log(waiting);
+                })
+                .catch(d => {
+                    waiting = false;
+                });
         }
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        for (let i = data.screens.length - 1; i >= 0; i--) {
-            const screen = data.screens[i];
-            const v = intensity[i];
-            ctx.fillStyle = selectedLayer === i ? 'yellow' : `rgb(${v}, ${v}, ${v})`;
-            for (let p of screen) {
-                ctx.fillRect((p[0] - minX) * zoom, (p[1] - minY) * zoom, zoom, zoom);
+
+        function update(data) {
+            zoom = +zoomControl.value;
+            let minSize = +minSizeControl.value;
+            console.log(zoom);
+            process = data;
+            document.getElementById("memory").value = data.memory;
+            document.getElementById("time").innerText = data.timeTakenMs;
+            //document.getElementById("pid").innerText = data.pid;
+            const pixels = data.screens.flat();
+            minX = Math.min(-Math.floor(minSize / 2), Math.min(...pixels.map(p => p[0])));
+            minY = Math.min(-Math.floor(minSize / 2), Math.min(...pixels.map(p => p[1])));
+            const maxX = Math.max(Math.floor(minSize / 2), Math.max(...pixels.map(p => p[0])));
+            const maxY = Math.max(Math.floor(minSize / 2), Math.max(...pixels.map(p => p[1])));
+            const margin = 0;
+            canvas.width = (maxX - minX + 1) * zoom + 2 * margin;
+            canvas.height = (maxY - minY + 1) * zoom + 2 * margin;
+            ctx.fillStyle = 'black';
+            const intensity = [255, 128, 64, 32, 16, 8, 4, 2, 1, 0];
+            for (var i = 1; i < intensity.length; i++) {
+                intensity[i] = intensity[i - 1] * contrastFactor / 100;
+
             }
-        }
-        if (waiting) {
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
+            for (let i = data.screens.length - 1; i >= 0; i--) {
+                const screen = data.screens[i];
+                const v = intensity[i];
+                ctx.fillStyle = selectedLayer === i ? 'yellow' : `rgb(${v}, ${v}, ${v})`;
+                for (let p of screen) {
+                    ctx.fillRect((p[0] - minX) * zoom, (p[1] - minY) * zoom, zoom, zoom);
+                }
+            }
+            if (waiting) {
+                ctx.fillStyle = 'rgba(0,0,0,0.5)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
 
-    }
-</script>
+        }
+    </script>
 </body>
 </html>
