@@ -40,6 +40,7 @@ namespace PlanetWars.Server
         {
             var infiniteTimeout = Timeout.InfiniteTimeSpan;
             var largeTimeout = TimeSpan.FromMinutes(30);
+            var extraLargeTimeout = TimeSpan.FromDays(1);
             switch (pwsMode)
             {
                 case PlanetWarsServerMode.Local:
@@ -59,7 +60,7 @@ namespace PlanetWars.Server
                         StartTimeout = largeTimeout,
                         TotalCommandsTimeout = infiniteTimeout,
                         CommandsTimeout = largeTimeout,
-                        GameExpirationTimeout = largeTimeout,
+                        GameExpirationTimeout = extraLargeTimeout,
                         LongPollingTimeout = LongPollingKeepAliveTimeout,
                     };
                 default:
