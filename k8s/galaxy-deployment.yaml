@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: galaxy-deployment
+  labels:
+    app: galaxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: galaxy
+  template:
+    metadata:
+      labels:
+        app: galaxy
+    spec:
+      containers:
+      - name: galaxy
+        image: icfpcontest2020/galaxy:latest
+        ports:
+        - containerPort: 12345
+        resources:
+          requests:
+            memory: "1G"
+            cpu: "250m"
+          limits:
+            memory: "2G"
+            cpu: "500m"

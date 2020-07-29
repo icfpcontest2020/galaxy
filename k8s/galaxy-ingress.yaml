@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: galaxy-ingress
+  labels:
+    app: galaxy
+spec:
+  rules:
+    - host: api.pegovka.space
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: galaxy-service
+              servicePort: 80

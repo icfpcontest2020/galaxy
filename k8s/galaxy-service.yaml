@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: galaxy-service
+spec:
+  selector:
+    app: galaxy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 12345
