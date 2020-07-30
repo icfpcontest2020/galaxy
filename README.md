@@ -2,6 +2,8 @@
 
 Pre-built version of this server is available online at https://api.pegovka.space/
 
+Swagger docs: https://api.pegovka.space/swagger
+
 ## How to change message images
 
 1. Change source in src/CosmicMachine/message.txt
