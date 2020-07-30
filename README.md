@@ -4,17 +4,20 @@ Pre-built version of this server is available online at https://api.pegovka.spac
 
 Swagger docs: https://api.pegovka.space/swagger
 
+
 ## How to change message images
 
-1. Change source in src/CosmicMachine/message.txt
-2. Run `render-messages.sh` (dotnet core should be installed)
-3. See result in /message directory
- 
+1. Change source in `src/CosmicMachine/message.txt`.
+2. Run `render-messages.sh` (.NET Core should be installed).
+3. See result in `/message` directory.
+
+
 ## How to change galaxy.txt
 
-1. Edit source in src/CosmicMachine/CSharpGalaxy
-2. Run `compile-galaxy.sh` (dotnet core should be installed)
-3. See result in /galaxy directory
+1. Edit source in `src/CosmicMachine/CSharpGalaxy`.
+2. Run `compile-galaxy.sh` (.NET Core should be installed).
+3. See result in `/galaxy` directory.
+
 
 ## How to run pre-built Alien server locally
 
@@ -25,7 +28,7 @@ Swagger docs: https://api.pegovka.space/swagger
    ```
 
 2. Open this url in browser: `http://localhost:12345/swagger` - you
-   will see swagger docs page for Galaxy API
+   will see Swagger docs page for Galaxy API.
    
 3. Try to send simple `Countdown` request (`[0]`, which is modulated as `1101000`):
    ```bash
@@ -40,9 +43,10 @@ Swagger docs: https://api.pegovka.space/swagger
 4. So, if everything is fine, then you can use address `http://localhost:12345`
    as `serverUrl` for your Galaxy Pad implementation.
 
+
 ## How to build and run Alien server locally
 
-1. Clone, build with docker and run on port `12345`:
+1. Clone, build with Docker and run on port `12345`:
 
    ```bash
    $ git clone git@github.com:icfpcontest2020/galaxy.git
@@ -52,12 +56,13 @@ Swagger docs: https://api.pegovka.space/swagger
    ```
 
 2. Other steps are the same as described earlier.
-   
+
+
 ## How to modulate/demodulate Alien strings
 
-Use provided bash-scripts `mod.sh` and `dem.sh` (dotnet core should be installed).
+Use provided bash-scripts `mod.sh` and `dem.sh` (.NET Core should be installed).
 
-You can modulate/demodulate strings from STDIN or from command line arguments:
+You can modulate/demodulate strings from `STDIN` or from command line arguments:
 ```bash
 $ ./mod.sh "[0, 1]"
 11010110110000100
