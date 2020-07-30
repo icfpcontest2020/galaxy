@@ -15,6 +15,8 @@ using PlanetWars.Server.HandlersMechanics;
 using PlanetWars.Server.Helpers;
 using PlanetWars.Server.Polling;
 
+using Swashbuckle.AspNetCore.Annotations;
+
 namespace PlanetWars.Server.Controllers
 {
     [ApiController]
@@ -35,6 +37,17 @@ namespace PlanetWars.Server.Controllers
         }
 
         [HttpGet("{responseId:guid}")]
+        [SwaggerOperation(
+            "Get a Response From Spacecraft",
+            Description = "Use this to get a response to the request you have sent earlier, in case the spacecraft didn’t respond fast enough.")]
+        [SwaggerResponse(200, "You will get this response if the spacecraft responds fast enough.<br/><br/>" +
+                              "Response body will contain modulated spacecraft response with a <code>Content-Type: text/plain</code> HTTP header.")]
+        [SwaggerResponse(302, "You will get this response if the spacecraft doesn’t respond fast enough.<br/><br/>" +
+                              "If the spacecraft doesn’t respond fast enough we return <code>302 Found</code> status code. " +
+                              "The <code>Location</code> response HTTP header will contain an URL where you can ask for the response again later. " +
+                              "In fact, this header will always contain <code>/aliens/{responseId}</code>. " +
+                              "It’s a long-polling protocol, so you can make a new request to this location immediately after you got it. " +
+                              "Many HTTP client implementations, e.g. C#’s <code>HttpClient</code>, can follow redirects automatically, so you don’t deal with this.")]
         public async Task<ActionResult> GetResponseAsync(Guid responseId)
         {
             var pollResult = await apiResponsePoller.TryGetAsync(responseId, HttpContext.RequestAborted);
@@ -45,6 +58,17 @@ namespace PlanetWars.Server.Controllers
 
         [HttpPost("send")]
         [RawTextRequest]
+        [SwaggerOperation(
+            "Send a Request to Spacecraft",
+            Description = @"Pass modulated string in the request body with a <code>Content-Type: text/plain</code> HTTP header.")]
+        [SwaggerResponse(200, "You will get this response if the spacecraft responds fast enough.<br/><br/>" +
+                              "Response body will contain modulated spacecraft response with a <code>Content-Type: text/plain</code> HTTP header.")]
+        [SwaggerResponse(302, "You will get this response if the spacecraft doesn’t respond fast enough.<br/><br/>" +
+                              "If the spacecraft doesn’t respond fast enough we return <code>302 Found</code> status code. " +
+                              "The <code>Location</code> response HTTP header will contain an URL where you can ask for the response again later. " +
+                              "In fact, this header will always contain <code>/aliens/{responseId}</code>. " +
+                              "It’s a long-polling protocol, so you can make a new request to this location immediately after you got it. " +
+                              "Many HTTP client implementations, e.g. C#’s <code>HttpClient</code>, can follow redirects automatically, so you don’t deal with this.")]
         public async Task<ActionResult> SendAsync()
         {
             using var streamReader = new StreamReader(Request.Body);

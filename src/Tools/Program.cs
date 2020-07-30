@@ -18,35 +18,35 @@ namespace Tools
             {
                 case "--help":
                     Console.Error.WriteLine("CosmicTools");
-                    Console.Error.WriteLine("  --help                   show this help");
-                    Console.Error.WriteLine("  --encode <data>|STDIN    encode to alien format");
-                    Console.Error.WriteLine("  --decode <data>|STDIN    decode from alien format");
+                    Console.Error.WriteLine("  --help                show this help");
+                    Console.Error.WriteLine("  --mod <data>|STDIN    modulate to alien format");
+                    Console.Error.WriteLine("  --dem <data>|STDIN    demodulate from alien format");
                     return 0;
 
-                case "--encode":
+                case "--mod":
                     if (args.Length > 1)
-                        return Encode(args[1]);
+                        return Modulate(args[1]);
                     else
                     {
                         string line;
                         while ((line = Console.ReadLine()) != null)
                         {
-                            var exitCode = Encode(line);
+                            var exitCode = Modulate(line);
                             if (exitCode != 0)
                                 return exitCode;
                         }
                         return 0;
                     }
 
-                case "--decode":
+                case "--dem":
                     if (args.Length > 1)
-                        return Decode(args[1]);
+                        return Demodulate(args[1]);
                     else
                     {
                         string line;
                         while ((line = Console.ReadLine()) != null)
                         {
-                            var exitCode = Decode(line);
+                            var exitCode = Demodulate(line);
                             if (exitCode != 0)
                                 return exitCode;
                         }
@@ -59,7 +59,7 @@ namespace Tools
             }
         }
 
-        private static int Encode(string source)
+        private static int Modulate(string source)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Tools
             }
         }
 
-        private static int Decode(string source)
+        private static int Demodulate(string source)
         {
             try
             {

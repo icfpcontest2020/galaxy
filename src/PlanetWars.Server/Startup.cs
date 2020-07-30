@@ -78,6 +78,7 @@ namespace PlanetWars.Server
                         Version = "v1"
                     });
                     c.OperationFilter<RawTextRequestOperationFilter>();
+                    c.EnableAnnotations();
                 });
             services.AddSwaggerGenNewtonsoftSupport();
         }
